@@ -1,0 +1,57 @@
+﻿@model SurveyPortal.MVC.Models.Survey
+@{
+    Layout = "_Layout";
+}
+<h2>@Model.Title</h2>
+
+<form id="surveyForm">
+    <input type="hidden" id="SurveyId" value="@Model.Id" />
+    @for (int i = 0; i < Model.Questions.Count; i++)
+    {
+        var question = Model.Questions[i];
+        <div class="mb-3">
+            <strong>@question.Text</strong>
+            @foreach (var option in question.Options)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q@question.Id" value="@option.Id" />
+                    <label class="form-check-label">@option.Text</label>
+                </div>
+            }
+        </div>
+    }
+    <button type="submit" class="btn btn-success">Gönder</button>
+</form>
+
+<script>
+    $('#surveyForm').submit(function (e) {
+        e.preventDefault();
+
+        let surveyId = $('#SurveyId').val();
+        let data = [];
+
+        $('input[type=radio]:checked').each(function () {
+            data.push({
+                questionId: $(this).attr('name').replace('q', ''),
+                selectedOptionId: $(this).val()
+            });
+        });
+
+        $.ajax({
+            url: 'https://localhost:5001/api/Survey/' + surveyId + '/submit', // endpoint varsa
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token') // token varsa
+            },
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function () {
+                alert('Anket gönderildi!');
+                window.location.href = '/Surveys/Index';
+            },
+            error: function () {
+                alert('Bir hata oluştu.');
+            }
+        });
+    });
+</script>

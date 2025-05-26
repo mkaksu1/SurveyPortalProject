@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "_Layout";
+}
+<h2>Login</h2>
+<form method="post" asp-action="Login">
+    <input name="username" class="form-control" placeholder="Username" />
+    <input name="password" class="form-control" placeholder="Password" type="password" />
+    <button type="submit" class="btn btn-primary mt-2">Login</button>
+</form>
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger mt-2">@ViewBag.Error</div>
+}

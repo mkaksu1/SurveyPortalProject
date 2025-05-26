@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "tZeKsHdpUux70jpgVb670YhJMNC7Co5mfiiqWBhswbw=",
+  "Source": "SurveyPortalAPI",
+  "BasePath": "_content/SurveyPortalAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

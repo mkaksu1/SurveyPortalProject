@@ -1,0 +1,15 @@
+﻿@model List<SurveyPortal.MVC.Models.Survey>
+@{
+    Layout = "_Layout";
+}
+<h2>Aktif Anketler</h2>
+
+<ul class="list-group">
+    @foreach (var survey in Model)
+    {
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span>@survey.Title</span>
+            <a class="btn btn-primary" href="/Surveys/Take/@survey.Id">Doldur</a>
+        </li>
+    }
+</ul>

@@ -1,0 +1,29 @@
+﻿@model List<SurveyPortal.MVC.Models.ChartResult>
+@{
+    Layout = "_Layout";
+}
+<h2>Anket Sonuçları</h2>
+
+<canvas id="resultsChart" width="400" height="200"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('resultsChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [@string.Join(",", Model.Select(m => $"\"{m.Label}\""))],
+            datasets: [{
+                label: 'Oy Sayısı',
+                data: [@string.Join(",", Model.Select(m => m.Count))],
+                backgroundColor: ['#007bff', '#dc3545', '#ffc107']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+</script>

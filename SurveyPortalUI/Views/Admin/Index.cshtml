@@ -1,0 +1,24 @@
+﻿@model List<SurveyPortal.MVC.Models.Survey>
+@{
+    Layout = "_Layout";
+}
+<h2>Admin – Anket Yönetimi</h2>
+<a href="/Admin/Create" class="btn btn-success mb-3">Yeni Anket Oluştur</a>
+
+<table class="table">
+    <thead>
+        <tr><th>Başlık</th><th>İşlem</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var survey in Model)
+        {
+            <tr>
+                <td>@survey.Title</td>
+                <td>
+                    <a href="/Admin/Delete/@survey.Id" class="btn btn-danger btn-sm">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+    

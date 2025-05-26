@@ -1,0 +1,13 @@
+﻿@model SurveyPortal.MVC.Models.Survey
+@{
+    Layout = "_Layout";
+}
+<h2>Yeni Anket Oluştur</h2>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label>Başlık</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>
